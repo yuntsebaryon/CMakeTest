@@ -1,0 +1,1 @@
+/usr/bin/c++   -dynamiclib -Wl,-headerpad_max_install_names  -o lib/libmylib.dylib -install_name @rpath/libmylib.dylib CMakeFiles/mylib.dir/sample.cxx.o CMakeFiles/mylib.dir/yuntse.cxx.o CMakeFiles/mylib.dir/Kazu_crapCint.cxx.o 

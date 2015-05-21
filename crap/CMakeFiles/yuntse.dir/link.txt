@@ -1,0 +1,2 @@
+/usr/bin/ar cq libyuntse.a  CMakeFiles/yuntse.dir/yuntse.cxx.o
+/usr/bin/ranlib libyuntse.a

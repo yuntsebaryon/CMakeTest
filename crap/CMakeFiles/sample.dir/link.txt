@@ -1,0 +1,2 @@
+/usr/bin/ar cq libsample.a  CMakeFiles/sample.dir/sample.cxx.o
+/usr/bin/ranlib libsample.a

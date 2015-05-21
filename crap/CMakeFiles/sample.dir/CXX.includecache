@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/yuntse/Work/uboone/LArLite/UserDev/Kazu/crap/sample.cxx
+sample.h
+/Users/yuntse/Work/uboone/LArLite/UserDev/Kazu/crap/sample.h
+
+/Users/yuntse/Work/uboone/LArLite/UserDev/Kazu/crap/sample.h
+
