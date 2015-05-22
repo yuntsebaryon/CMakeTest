@@ -29,6 +29,8 @@ public:
   /// Default destructor
   virtual ~sample(){};
 
+  bool function();
+
 };
 
 #endif

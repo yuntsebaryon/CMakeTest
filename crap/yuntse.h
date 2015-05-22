@@ -31,6 +31,7 @@ public:
   /// Default destructor
   ~yuntse(){}
 
+  bool func();
 };
 
 #endif
