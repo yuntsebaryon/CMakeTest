@@ -1,4 +1,8 @@
 /*Dict*
 /CMakeCache.txt
 /CMakeFiles/
-
+/Makefile/
+/*.a
+/cmake_install*
+/Makefile
+/lib
