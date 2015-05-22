@@ -14,6 +14,7 @@
 #ifndef KAZU_CRAP_SAMPLE_H
 #define KAZU_CRAP_SAMPLE_H
 
+
 /**
    \class sample
    User defined class crap ... these comments are used to generate
