@@ -9,26 +9,28 @@ project (crap)
 set(CMAKE_MACOSX_RPATH TRUE)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "./lib")
 set(DICT_NAME "Kazu_crapDict")
-if(EXISTS ${DICT_NAME}.cxx)
+if(EXISTS ${CMAKE_CURRENT_BINARY_DIR}/${DICT_NAME}.cxx)
   MESSAGE("Removing a dictionary file: ${Yellow}${DICT_NAME}.cxx${ColorReset}")
-  file(REMOVE ${DICT_NAME}.cxx)
+  file(REMOVE ${CMAKE_CURRENT_BINARY_DIR}/${DICT_NAME}.cxx)
 endif()
-if(EXISTS ${DICT_NAME}.h)
+if(EXISTS ${CMAKE_CURRENT_BINARY_DIR}/${DICT_NAME}.h)
   MESSAGE("Removing a dictionary file: ${Yellow}${DICT_NAME}.h${ColorReset}")
-  file(REMOVE ${DICT_NAME}.h)
+  file(REMOVE ${CMAKE_CURRENT_BINARY_DIR}/${DICT_NAME}.h)
 endif()
 
 # Get list of course
-file( GLOB MYSOURCES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" *.cxx )
-file( GLOB MYHEADERS RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" *.h  )
-list( REMOVE_ITEM MYHEADERS "LinkDef.h")
+file( GLOB MYHEADERS *.h  )
+file( GLOB LINKDEF LinkDef.h)
+list(GET LINKDEF 0 LINKDEF)
+list( REMOVE_ITEM MYHEADERS ${LINKDEF})
 
 # Pre process to generate dictionary source code + getting compiler/linker flags
-execute_process(COMMAND rootcint -f ${DICT_NAME}.cxx -c -I. ${MYHEADERS} LinkDef.h)
+execute_process(COMMAND rootcint -f ${CMAKE_CURRENT_BINARY_DIR}/${DICT_NAME}.cxx -c -I. ${MYHEADERS} ${LINKDEF})
 execute_process(COMMAND root-config --libs OUTPUT_VARIABLE ROOTLIB OUTPUT_STRIP_TRAILING_WHITESPACE)
 execute_process(COMMAND root-config --cflags OUTPUT_VARIABLE ROOTINC OUTPUT_STRIP_TRAILING_WHITESPACE)
 
 # Set include dirs
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 set(CMAKE_SHARED_LINKER_FLAGS ${ROOTLIB})
 set(CMAKE_CXX_FLAGS ${ROOTINC})
 
