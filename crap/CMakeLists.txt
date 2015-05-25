@@ -33,13 +33,21 @@ set(CMAKE_SHARED_LINKER_FLAGS ${ROOTLIB})
 set(CMAKE_CXX_FLAGS ${ROOTINC})
 
 # Compile libraries
-add_library(sample STATIC sample.cxx)
-add_library(yuntse STATIC yuntse.cxx)
+foreach( src_file ${MYSOURCES} )
+string( REPLACE "." ";" src_holder ${src_file} )
+list( GET src_holder 0 lib_file )
+list( APPEND MYLIBS ${lib_file} )
+MESSAGE("Source file: " ${src_file} )
+MESSAGE("Lib file   : " ${lib_file} )
+add_library( ${lib_file} STATIC ${src_file} )
+link_libraries( ${lib_file} )
+endforeach()
+
+MESSAGE("My libraries: " ${MYLIBS})
+MESSAGE("My sources  : " ${MYSOURCES})
 add_library(${DICT_NAME} STATIC ${DICT_NAME}.cxx)
-link_libraries(sample)
-link_libraries(yuntse)
 link_libraries(${DICT_NAME})
-add_library(crap SHARED yuntse sample ${DICT_NAME})
+add_library(crap SHARED ${lib_file} ${DICT_NAME})
 
 # Final: executables
 #add_executable(crap mymain.cc)
